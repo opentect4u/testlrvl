@@ -30,3 +30,4 @@ Route::post('/image', [App\Http\Controllers\ImageController::class,'index'])->na
 
 
 Route::get('/show', [App\Http\Controllers\ShowController::class,'index'])->name('show');
+Route::post('/localityManageAjax', [App\Http\Controllers\ShowController::class,'showPagination'])->name('localityManageAjax');
