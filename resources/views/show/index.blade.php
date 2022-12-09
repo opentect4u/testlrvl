@@ -11,6 +11,11 @@
 </head>
 
 <body>
+    <h2>Show</h2>
+    <h2>Show</h2>
+    <h2>Show</h2>
+    <h2>Show</h2>
+    <h2>Show</h2>
     <div class="row">
         <div class="col-md-12">
             <h2>Show Page</h2>
@@ -25,6 +30,8 @@
     </div>
 
 
+
+    
     <script>
     function data_table() {
         $('#dataTables-example').DataTable({
