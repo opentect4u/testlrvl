@@ -9,5 +9,8 @@ use Illuminate\Routing\Controller as BaseController;
 
 class Controller extends BaseController
 {
+    const DATA_FETCH_ERROR = 'Currently we are facing some data fetching problem. Please try again.';
+    const DATA_FETCH = 'Data successfully retrieve.';
+    const DATA_SAVE_ERROR = 'Data saveing error.';
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 }

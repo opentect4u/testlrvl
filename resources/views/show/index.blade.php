@@ -75,7 +75,7 @@
 
     <script>
     $(document).ready(function() {
-        // data_table_locality();
+        data_table_locality();
 
 
     });
@@ -88,6 +88,7 @@
     function data_table_locality() {
         $('#locality').DataTable({
             "serverSide": true,
+            "processing":true,
             "iDisplayLength": 10,
             columnDefs: [{
                 orderable: false,
@@ -105,12 +106,12 @@
                     id: 1,
                 },
                 error: function(xhr, error, code) {
-                    $("#loaderDiv").hide();
+                    // $("#loaderDiv").hide();
                     alert('error')
                 }
             },
             "preDrawCallback": function() {
-                $("#loaderDiv").show();
+                // $("#loaderDiv").show();
             },
             "drawCallback": function(settings) {
                 let response = settings.json;
@@ -121,7 +122,7 @@
                 //     $('#addBtn').hide();
                 // }
                 // $('#addBtn').hide();
-                $("#loaderDiv").hide();
+                // $("#loaderDiv").hide();
             },
             "columns": [{
                     "data": "id"

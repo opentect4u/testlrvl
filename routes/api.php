@@ -26,3 +26,12 @@ Route::get('/testevent', function () {
 });
 
 Route::post('channelmessage',[App\Http\Controllers\API\ChannelController::class,'index']);
+Route::get('serverdatatable',[App\Http\Controllers\ShowController::class,'showPaginate']);
+
+
+Route::middleware(['ipcheck'])->group(function () {
+    Route::prefix('v1')->group(function () {
+        Route::get('getip',[App\Http\Controllers\ShowController::class,'ShowIp']);
+        Route::get('index1',[App\Http\Controllers\ShowController::class,'index1']);
+    });
+});

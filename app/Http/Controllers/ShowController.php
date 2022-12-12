@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Locality;
+use App\Helpers\Helper;
 
 class ShowController extends Controller
 {
@@ -45,7 +46,8 @@ class ShowController extends Controller
             $data = array();
             if (!empty($locality)) {
                 foreach ($locality as $local) {
-                    $edit = route('showLocalityEdit', ['id' => Crypt::encrypt($local->id)]);
+                    $edit = '';
+                    // $edit = route('showLocalityEdit', ['id' => Crypt::encrypt($local->id)]);
                     $id = $local->id;
                     if ($local->active == 'N') {
                         $atvn = $local->active;
@@ -74,5 +76,34 @@ class ShowController extends Controller
             "data" => $data
         );
         echo json_encode($json_data);
+    }
+
+    public function showPaginate(Request $request)
+    {
+        
+        try {
+            $showEntries=$request->showEntries;
+            $search=$request->search;
+            $totalData = Locality::orWhere('id', 'LIKE', "%{$search}%")
+                ->orWhere('value', 'LIKE', "%{$search}%")
+                ->orWhere('pincode', 'LIKE', "%{$search}%")
+                ->paginate($showEntries);
+        } catch (\Throwable $th) {
+            return Helper::ErrorResponse(parent::DATA_FETCH_ERROR);
+        }
+        return $totalData;
+        // return Helper::SuccessResponse(parent::DATA_FETCH,$totalData);
+    }
+
+    public function ShowIp(Request $request)
+    {
+        // return $request->ip();
+        return Helper::ErrorResponse(parent::DATA_FETCH_ERROR);
+
+    }
+
+    public function index1(Request $request)
+    {
+        return view('show.index1');
     }
 }
